@@ -1,0 +1,48 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+ struct ListNode {
+      int val;
+      ListNode *next;
+      ListNode(int x) : val(x), next(NULL) {}
+  };
+ 
+
+class Solution {
+public:
+    void swap(int& a,int& b){
+        int t=a;
+        a=b;
+        b=t;
+    }
+    void rev(vector<int>& nums,int l,int h){
+        while(l<h){
+            swap(nums[l],nums[h]);
+            l++;
+            h--;
+        }
+    }
+    void rotate(vector<int>& nums, int k) {
+        int n=nums.size();
+        k=k%n;
+        
+        rev(nums,0,n-1);
+        rev(nums,0,k-1);
+        rev(nums,k,n-1);        
+  
+    }
+};
+
+int main() {
+    
+    int  k = 3;
+    vector<int> nums = {1,2,3,4,5,6,7};
+    
+    Solution s;
+   s.rotate(nums,k);
+    for(int i=0;i<nums.size();i++){
+        cout<<nums[i]<<" ";
+    }
+
+    return 0;
+}
